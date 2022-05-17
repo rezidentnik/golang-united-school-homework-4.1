@@ -1,17 +1,20 @@
 package reverse_string
 
 import (
-	"strings"
+	"unicode/utf8"
 )
 
 func ReverseString(input string) (output string) {
-	var sb strings.Builder
+	runesNumber := utf8.RuneCountInString(input)
+	reversedSlice := make([]rune, runesNumber)
+	i := runesNumber
 
 	for _, rune := range input {
-		sb.WriteRune(rune)
+		i--
+		reversedSlice[i] = rune
 	}
 
-	output = sb.String()
+	output = string(reversedSlice)
 
 	return output
 }
